@@ -1,0 +1,11 @@
+# Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+# SPDX-License-Identifier: MIT-0
+
+[mcp_servers.aws-healthomics]
+command = "uvx"
+args = ["awslabs.aws-healthomics-mcp-server@latest"]
+enabled = true
+
+[mcp_servers.aws-healthomics.env]
+HEALTHOMICS_DEFAULT_MAX_RESULTS = "100"
+AGENT = "codex"
