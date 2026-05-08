@@ -203,6 +203,21 @@ Once configured, ask your AI assistant to:
 - **VPC networking** — "Set up VPC connectivity so my workflow can access the internet"
 - **Git integration** — "Deploy this nf-core pipeline from GitHub to HealthOmics"
 
+## Example Prompts
+
+The [`example-prompts/`](./example-prompts/) directory contains guided scenarios you can paste directly into your AI assistant to see the HealthOmics MCP server in action. Each example is self-contained with step-by-step prompts and expected behavior:
+
+| # | Example | What It Shows |
+|---|---------|---------------|
+| 1 | [Workflow Development](./example-prompts/01-workflow-development/) | Write WDL, lint, package, deploy, run |
+| 2 | [Migrate Existing Workflow](./example-prompts/02-migrate-existing-workflow/) | Audit, upgrade syntax, migrate containers, deploy |
+| 3 | [Git Integration](./example-prompts/03-git-integration/) | Deploy from GitHub, container setup, run pipeline |
+| 4 | [Troubleshooting Failures](./example-prompts/04-troubleshooting-failures/) | Diagnose, fix, version, re-run with caching |
+| 5 | [Performance Optimization](./example-prompts/05-performance-optimization/) | Analyze utilization, right-size, timeline visualization |
+| 6 | [Batch Runs](./example-prompts/06-batch-runs/) | Multi-sample submission, monitoring, partial retry |
+| 7 | [Container Management](./example-prompts/07-container-management/) | ECR validation, pull-through caches, registry maps |
+| 8 | [Genomics Data Search](./example-prompts/08-genomics-data-search/) | File search, index discovery, workflow input assembly |
+
 ## Steering Documents
 
 The `steering/` directory contains best-practice SOPs that guide the AI agent:
