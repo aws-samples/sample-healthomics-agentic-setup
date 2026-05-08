@@ -77,8 +77,8 @@ case $choice in
             CLAUDE_GLOBAL=true
         else
             CLAUDE_GLOBAL=false
-            FILES=(".mcp.json" "CLAUDE.md")
-            DIR_COPY="steering"
+            FILES=(".mcp.json")
+            DIRS=(".claude")
         fi
         ;;
     4)
@@ -176,13 +176,13 @@ if [[ "${KIRO_GLOBAL:-false}" == "true" ]]; then
             cp "$SOURCE_DIR/.kiro/agents/healthomics.json" "$dest"
             cp "$SOURCE_DIR/.kiro/agents/healthomics-prompt.md" "$prompt_dest"
             # Fix prompt path for global context
-            sed -i '' 's|file://.kiro/agents/healthomics-prompt.md|file://healthomics-prompt.md|' "$dest"
+            sed 's|file://.kiro/agents/healthomics-prompt.md|file://healthomics-prompt.md|' "$dest" > "$dest.tmp" && mv "$dest.tmp" "$dest"
             echo "  ✓ Installed agent → agents/healthomics.json"
         }
     else
         cp "$SOURCE_DIR/.kiro/agents/healthomics.json" "$dest"
         cp "$SOURCE_DIR/.kiro/agents/healthomics-prompt.md" "$prompt_dest"
-        sed -i '' 's|file://.kiro/agents/healthomics-prompt.md|file://healthomics-prompt.md|' "$dest"
+        sed 's|file://.kiro/agents/healthomics-prompt.md|file://healthomics-prompt.md|' "$dest" > "$dest.tmp" && mv "$dest.tmp" "$dest"
         echo "  ✓ Installed agent → agents/healthomics.json"
     fi
 
@@ -216,27 +216,9 @@ if [[ "${CLAUDE_GLOBAL:-false}" == "true" ]]; then
 
     mkdir -p "$CLAUDE_HOME"
 
-    # CLAUDE.md
-    dest="$CLAUDE_HOME/CLAUDE.md"
-    if [[ -f "$dest" ]]; then
-        read -p "  ~/.claude/CLAUDE.md already exists. Append? (y/N) " -n 1 -r
-        echo ""
-        if [[ $REPLY =~ ^[Yy]$ ]]; then
-            echo "" >> "$dest"
-            cat "$SOURCE_DIR/CLAUDE.md" >> "$dest"
-            echo "  ✓ Appended to CLAUDE.md"
-        else
-            echo "  Skipped CLAUDE.md"
-        fi
-    else
-        cp "$SOURCE_DIR/CLAUDE.md" "$dest"
-        echo "  ✓ Installed CLAUDE.md"
-    fi
-
     # .mcp.json (merge mcpServers key)
     dest="$CLAUDE_HOME/.mcp.json"
     if [[ -f "$dest" ]]; then
-        # Merge into existing config
         if command -v jq &> /dev/null; then
             jq -s '.[0] * {mcpServers: (.[0].mcpServers + .[1].mcpServers)}' "$dest" "$SOURCE_DIR/.mcp.json" > "$dest.tmp"
             mv "$dest.tmp" "$dest"
@@ -249,19 +231,18 @@ if [[ "${CLAUDE_GLOBAL:-false}" == "true" ]]; then
         echo "  ✓ Installed .mcp.json"
     fi
 
-    # Steering files
-    mkdir -p "$CLAUDE_HOME/steering"
-    for f in "$SOURCE_DIR/steering/"*.md; do
-        fname="$(basename "$f")"
-        cp "$f" "$CLAUDE_HOME/steering/$fname"
-    done
-    echo "  ✓ Installed steering/ files"
+    # Skill
+    SKILL_DIR="$CLAUDE_HOME/skills/healthomics"
+    mkdir -p "$SKILL_DIR/steering"
+    cp "$SOURCE_DIR/.claude/skills/healthomics/SKILL.md" "$SKILL_DIR/SKILL.md"
+    cp "$SOURCE_DIR/.claude/skills/healthomics/steering/"*.md "$SKILL_DIR/steering/"
+    echo "  ✓ Installed skill → skills/healthomics/"
 
     echo ""
     echo "✅ Global setup complete!"
     echo ""
-    echo "Note: Update CLAUDE.md steering paths to reference ~/.claude/steering/"
-    echo "      if Claude Code doesn't resolve relative paths from the global dir."
+    echo "The HealthOmics MCP server and skill are now available in all projects."
+    echo "Use '/healthomics' to load the skill in a conversation."
     exit 0
 fi
 
@@ -478,6 +459,10 @@ echo "  3. Open your project in $TOOL and start asking about HealthOmics!"
 
 # Tool-specific notes
 case $TOOL in
+    claude-code)
+        echo ""
+        echo "Use '/healthomics' in a conversation to activate the skill."
+        ;;
     kiro-cli)
         echo ""
         echo "Activate the agent with: /agent healthomics"
