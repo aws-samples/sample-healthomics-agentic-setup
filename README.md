@@ -40,11 +40,21 @@ Install the AWS HealthOmics power from the Kiro Power Store, or copy the power i
 
 ### Kiro CLI
 
-Copy into your project root:
+**Global install** (recommended — available in all projects):
 
 ```bash
-cp -r kiro-cli/.kiro .
-cp -r kiro-cli/steering ./steering
+./setup.sh   # Choose 2, then 'g'
+```
+
+Installs to:
+- `~/.kiro/agents/healthomics.json` — Agent configuration with MCP server and skills
+- `~/.kiro/agents/healthomics-prompt.md` — Agent system prompt with steering file routing
+- `~/.kiro/steering/` — Best-practice SOPs (with skill frontmatter for on-demand loading)
+
+**Local install** (project-specific):
+
+```bash
+./setup.sh   # Choose 2, then 'l'
 ```
 
 Files installed:
@@ -56,26 +66,47 @@ Activate with `/agent healthomics` or press `Ctrl+Shift+H`.
 
 ### Claude Code
 
-Copy into your project root:
+**Global install** (recommended — available in all projects):
 
 ```bash
-cp claude-code/.mcp.json .
-cp claude-code/CLAUDE.md .
-cp -r claude-code/steering ./steering
+./setup.sh   # Choose 3, then 'g'
+```
+
+Installs to:
+- `~/.claude/.mcp.json` — MCP server configuration (merged if existing)
+- `~/.claude/skills/healthomics/SKILL.md` — Skill definition with steering file routing
+- `~/.claude/skills/healthomics/steering/` — Best-practice SOPs
+
+**Local install** (project-specific):
+
+```bash
+./setup.sh   # Choose 3, then 'l'
 ```
 
 Files installed:
 - `.mcp.json` — MCP server configuration
-- `CLAUDE.md` — Agent instructions with steering file routing
-- `steering/` — Best-practice SOPs
+- `.claude/skills/healthomics/SKILL.md` — Skill definition with steering file routing
+- `.claude/skills/healthomics/steering/` — Best-practice SOPs
+
+Use `/healthomics` in a conversation to activate the skill.
 
 ### Cursor
 
-Copy into your project root:
+**Global install** (recommended — available in all projects):
 
 ```bash
-cp -r cursor/.cursor .
-cp -r cursor/steering ./steering
+./setup.sh   # Choose 4, then 'g'
+```
+
+Installs to:
+- `~/.cursor/mcp.json` — MCP server configuration (merged if existing)
+- `~/.cursor/rules/healthomics.mdc` — Rule with glob triggers for `.wdl`, `.nf`, `.cwl` files
+- `~/.cursor/steering/` — Best-practice SOPs
+
+**Local install** (project-specific):
+
+```bash
+./setup.sh   # Choose 4, then 'l'
 ```
 
 Files installed:
@@ -85,12 +116,8 @@ Files installed:
 
 ### GitHub Copilot
 
-Copy into your project root:
-
 ```bash
-cp -r copilot/.vscode .
-cp -r copilot/.github .
-cp -r copilot/steering ./steering
+./setup.sh   # Choose 5
 ```
 
 Files installed:
@@ -100,14 +127,11 @@ Files installed:
 
 ### Cline / Roo Code
 
-Copy into your project root:
-
 ```bash
-cp cline/.clinerules .
-cp -r cline/steering ./steering
+./setup.sh   # Choose 6
 ```
 
-Then merge `cline/cline_mcp_settings.json` into your Cline MCP settings (Settings → MCP Servers → Edit Config).
+Then merge `cline_mcp_settings.json` into your Cline MCP settings (Settings → MCP Servers → Edit Config).
 
 Files installed:
 - `.clinerules` — Agent instructions with steering file routing
@@ -116,14 +140,11 @@ Files installed:
 
 ### Windsurf
 
-Copy into your project root:
-
 ```bash
-cp windsurf/.windsurfrules .
-cp -r windsurf/steering ./steering
+./setup.sh   # Choose 7
 ```
 
-Then merge `windsurf/mcp_config.json` into `~/.codeium/windsurf/mcp_config.json`.
+Then merge `mcp_config.json` into `~/.codeium/windsurf/mcp_config.json`.
 
 Files installed:
 - `.windsurfrules` — Agent instructions with steering file routing
@@ -141,7 +162,8 @@ Files installed:
 Installs to:
 - `~/.codex/config.toml` — MCP server configuration (appended)
 - `~/.codex/AGENTS.md` — Global agent instructions
-- `~/.codex/skills/aws-healthomics/` — Skill with SKILL.md and reference docs
+- `~/.codex/skills/aws-healthomics/SKILL.md` — Skill definition with reference routing
+- `~/.codex/skills/aws-healthomics/references/` — Best-practice SOPs
 
 **Local install** (project-specific):
 
