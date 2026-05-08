@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "aws-healthomics": {
+      "command": "uvx",
+      "args": [
+        "awslabs.aws-healthomics-mcp-server@latest"
+      ],
+      "env": {
+        "HEALTHOMICS_DEFAULT_MAX_RESULTS": "100",
+        "AGENT": "cline"
+      },
+      "disabled": false,
+      "autoApprove": []
+    }
+  }
+}

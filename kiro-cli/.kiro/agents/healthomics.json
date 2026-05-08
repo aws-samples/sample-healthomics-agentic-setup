@@ -1,0 +1,47 @@
+{
+  "name": "healthomics",
+  "description": "AWS HealthOmics workflow development, migration, running, debugging, and optimization",
+  "prompt": "file://.kiro/agents/healthomics-prompt.md",
+  "tools": [
+    "fs_read",
+    "fs_write",
+    "execute_bash",
+    "grep",
+    "glob",
+    "code",
+    "use_aws"
+  ],
+  "allowedTools": [
+    "fs_read",
+    "grep",
+    "glob",
+    "code",
+    "@aws-healthomics"
+  ],
+  "resources": [
+    "skill://steering/workflow-development.md",
+    "skill://steering/running-a-workflow.md",
+    "skill://steering/batch-runs.md",
+    "skill://steering/workflow-versioning.md",
+    "skill://steering/migration-guide-for-wdl.md",
+    "skill://steering/migration-guide-for-nextflow.md",
+    "skill://steering/troubleshooting.md",
+    "skill://steering/ecr-pull-through-cache.md",
+    "skill://steering/git-integration.md",
+    "skill://steering/vpc-setup.md",
+    "skill://steering/vpc-connected-workflow-runs.md",
+    "skill://steering/healthomics-configuration.md"
+  ],
+  "mcpServers": {
+    "aws-healthomics": {
+      "command": "uvx",
+      "args": ["awslabs.aws-healthomics-mcp-server@latest"],
+      "env": {
+        "HEALTHOMICS_DEFAULT_MAX_RESULTS": "100",
+        "AGENT": "kiro-cli"
+      }
+    }
+  },
+  "keyboardShortcut": "ctrl+shift+h",
+  "welcomeMessage": "Ready to help with AWS HealthOmics workflows. What would you like to do?"
+}
