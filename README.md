@@ -11,7 +11,8 @@ Use AWS HealthOmics with your preferred AI coding assistant. This package provid
 | [Claude Code](#claude-code) | ✅ | ✅ `~/.claude/` |
 | [Cursor](#cursor) | ✅ | ✅ `~/.cursor/` |
 | [GitHub Copilot (VS Code)](#github-copilot) | ✅ | — |
-| [Cline / Roo Code](#cline--roo-code) | ✅ | — |
+| [Cline](#cline) | ✅ | — |
+| [Roo Code](#roo-code) | ✅ | — |
 | [Windsurf](#windsurf) | ✅ | — |
 | [OpenAI Codex CLI](#openai-codex-cli) | ✅ | ✅ `~/.codex/` |
 | [Google Gemini CLI](#google-gemini-cli) | ✅ | ✅ `~/.gemini/` |
@@ -64,6 +65,8 @@ Files installed:
 
 Activate with `/agent healthomics` or press `Ctrl+Shift+H`.
 
+**References:** [Kiro CLI Agents](https://kiro.dev/docs/agents/)
+
 ### Claude Code
 
 **Global install** (recommended — available in all projects):
@@ -90,6 +93,8 @@ Files installed:
 
 Use `/healthomics` in a conversation to activate the skill.
 
+**References:** [Claude Code MCP](https://docs.anthropic.com/en/docs/claude-code/mcp), [CLAUDE.md](https://docs.anthropic.com/en/docs/claude-code/memory#claudemd)
+
 ### Cursor
 
 **Global install** (recommended — available in all projects):
@@ -114,6 +119,8 @@ Files installed:
 - `.cursor/rules/healthomics.mdc` — Rule with glob triggers for `.wdl`, `.nf`, `.cwl` files
 - `steering/` — Best-practice SOPs
 
+**References:** [Cursor MCP](https://docs.cursor.com/context/model-context-protocol), [Cursor Rules](https://docs.cursor.com/context/rules), [Global MCP Config](https://docs.cursor.com/context/model-context-protocol#global-mcp-configuration)
+
 ### GitHub Copilot
 
 ```bash
@@ -121,35 +128,68 @@ Files installed:
 ```
 
 Files installed:
-- `.vscode/mcp.json` — MCP server configuration
+- `.vscode/mcp.json` — MCP server configuration (with `type: "stdio"`)
 - `.github/copilot-instructions.md` — Copilot workspace instructions
+- `.github/instructions/healthomics.instructions.md` — Path-specific instructions (activated for `.wdl`, `.nf`, `.cwl` files)
 - `steering/` — Best-practice SOPs
 
-### Cline / Roo Code
+**References:** [Copilot MCP](https://code.visualstudio.com/docs/copilot/chat/mcp-servers), [Custom Instructions](https://code.visualstudio.com/docs/copilot/copilot-customization), [Instruction Files](https://code.visualstudio.com/docs/copilot/copilot-customization#_instruction-files)
+
+### Cline
 
 ```bash
+<<<<<<< Updated upstream
 ./setup.sh   # Choose 6
+=======
+cp -r cline/.clinerules .
+cp -r cline/steering ./steering
+>>>>>>> Stashed changes
 ```
 
 Then merge `cline_mcp_settings.json` into your Cline MCP settings (Settings → MCP Servers → Edit Config).
 
 Files installed:
-- `.clinerules` — Agent instructions with steering file routing
+- `.clinerules/healthomics.md` — Agent instructions with conditional path activation
 - `cline_mcp_settings.json` — MCP config to merge into Cline settings
 - `steering/` — Best-practice SOPs
+
+**References:** [Cline MCP Servers](https://docs.cline.bot/mcp-servers/configuring-mcp-servers), [Cline Rules](https://docs.cline.bot/improving-your-workflow/cline-rules)
+
+### Roo Code
+
+Copy into your project root:
+
+```bash
+cp -r roo-code/.roo .
+cp -r roo-code/steering ./steering
+```
+
+Files installed:
+- `.roo/mcp.json` — Project-level MCP server configuration
+- `.roo/rules/healthomics.md` — Agent instructions with steering file routing
+- `steering/` — Best-practice SOPs
+
+**References:** [Roo Code MCP](https://docs.roocode.com/features/mcp/using-mcp-in-roo), [Project-Level MCP](https://docs.roocode.com/features/mcp/mcp-server-configuration#project-level-mcp-configuration), [Roo Code Rules](https://docs.roocode.com/features/rules)
 
 ### Windsurf
 
 ```bash
+<<<<<<< Updated upstream
 ./setup.sh   # Choose 7
+=======
+cp -r windsurf/.windsurf .
+cp -r windsurf/steering ./steering
+>>>>>>> Stashed changes
 ```
 
 Then merge `mcp_config.json` into `~/.codeium/windsurf/mcp_config.json`.
 
 Files installed:
-- `.windsurfrules` — Agent instructions with steering file routing
+- `.windsurf/rules/healthomics.md` — Rule with `model_decision` trigger and glob patterns
 - `mcp_config.json` — MCP config to merge into Windsurf settings
 - `steering/` — Best-practice SOPs
+
+**References:** [Windsurf MCP](https://docs.windsurf.com/windsurf/mcp), [Windsurf Rules](https://docs.windsurf.com/windsurf/cascade/memories#rules), [Global MCP Config](https://docs.windsurf.com/windsurf/mcp#configuration)
 
 ### OpenAI Codex CLI
 
@@ -176,6 +216,8 @@ Files installed:
 - `config.toml` — MCP server config snippet (merge into `~/.codex/config.toml`)
 - `steering/` — Best-practice SOPs
 
+**References:** [Codex CLI Configuration](https://github.com/openai/codex/blob/main/docs/configuration.md), [Codex CLI AGENTS.md](https://github.com/openai/codex/blob/main/docs/AGENTS.md), [Codex CLI Skills](https://github.com/openai/codex/blob/main/docs/skills.md)
+
 ### Google Gemini CLI
 
 **Global install** (recommended — available in all projects):
@@ -199,6 +241,8 @@ Files installed:
 - `.gemini/settings.json` — MCP server configuration
 - `.gemini/GEMINI.md` — Project context instructions
 - `steering/` — Best-practice SOPs
+
+**References:** [Gemini CLI MCP](https://github.com/google-gemini/gemini-cli/blob/main/docs/mcp/README.md), [Gemini CLI Configuration](https://github.com/google-gemini/gemini-cli/blob/main/docs/configuration.md), [GEMINI.md](https://github.com/google-gemini/gemini-cli/blob/main/docs/customization/GEMINI.md)
 
 ## Post-Setup Configuration
 

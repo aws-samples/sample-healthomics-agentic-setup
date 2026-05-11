@@ -1,6 +1,7 @@
 {
   "servers": {
     "aws-healthomics": {
+      "type": "stdio",
       "command": "uvx",
       "args": [
         "awslabs.aws-healthomics-mcp-server@latest"
