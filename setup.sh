@@ -30,12 +30,13 @@ echo "  2) Kiro CLI"
 echo "  3) Claude Code"
 echo "  4) Cursor"
 echo "  5) GitHub Copilot (VS Code)"
-echo "  6) Cline / Roo Code"
-echo "  7) Windsurf"
-echo "  8) OpenAI Codex CLI"
-echo "  9) Google Gemini CLI"
+echo "  6) Cline"
+echo "  7) Roo Code"
+echo "  8) Windsurf"
+echo "  9) OpenAI Codex CLI"
+echo " 10) Google Gemini CLI"
 echo ""
-read -p "Enter choice (1-9): " choice
+read -p "Enter choice (1-10): " choice
 
 case $choice in
     1)
@@ -107,16 +108,22 @@ case $choice in
     6)
         TOOL="cline"
         SOURCE_DIR="$SCRIPT_DIR/cline"
-        FILES=("cline_mcp_settings.json" ".clinerules")
-        DIR_COPY="steering"
+        FILES=("cline_mcp_settings.json")
+        DIRS=(".clinerules" "steering")
         ;;
     7)
-        TOOL="windsurf"
-        SOURCE_DIR="$SCRIPT_DIR/windsurf"
-        FILES=("mcp_config.json" ".windsurfrules")
-        DIR_COPY="steering"
+        TOOL="roo-code"
+        SOURCE_DIR="$SCRIPT_DIR/roo-code"
+        FILES=()
+        DIRS=(".roo" "steering")
         ;;
     8)
+        TOOL="windsurf"
+        SOURCE_DIR="$SCRIPT_DIR/windsurf"
+        FILES=("mcp_config.json")
+        DIRS=(".windsurf" "steering")
+        ;;
+    9)
         TOOL="codex"
         SOURCE_DIR="$SCRIPT_DIR/codex"
         echo ""
@@ -133,7 +140,7 @@ case $choice in
             DIR_COPY="steering"
         fi
         ;;
-    9)
+    10)
         TOOL="gemini-cli"
         SOURCE_DIR="$SCRIPT_DIR/gemini"
         echo ""
@@ -472,6 +479,11 @@ case $TOOL in
         echo ""
         echo "Note: Copy cline_mcp_settings.json content into your Cline MCP settings"
         echo "      (Settings → MCP Servers → Edit Config)"
+        ;;
+    roo-code)
+        echo ""
+        echo "The .roo/mcp.json provides project-level MCP configuration."
+        echo "No additional merge step needed — Roo Code reads it automatically."
         ;;
     windsurf)
         echo ""
