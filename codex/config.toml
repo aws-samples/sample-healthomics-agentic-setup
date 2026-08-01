@@ -5,6 +5,8 @@
 command = "uvx"
 args = ["awslabs.aws-healthomics-mcp-server@latest"]
 enabled = true
+startup_timeout_sec = 60
+tool_timeout_sec = 300
 
 [mcp_servers.aws-healthomics.env]
 HEALTHOMICS_DEFAULT_MAX_RESULTS = "100"
