@@ -54,7 +54,7 @@ AWS HealthOmics requires:
 
 ### Phase 2: Runtime Attribute Audit
 
-**Objective**: Verify all tasks have CPU and memory runtime declarations.
+**Objective**: Ensure all tasks have CPU and memory runtime declarations.
 
 **HealthOmics Limits**: Min 2 vCPUs / 4 GiB memory. Max 96 vCPUs / 768 GiB memory.
 
@@ -79,7 +79,7 @@ AWS HealthOmics requires:
 
 ### Phase 3: WDL Version Compatibility
 
-**Objective**: Verify WDL 1.0+ compatibility.
+**Objective**: Ensure WDL 1.0+ compatibility.
 
 **Steps**:
 1. Scan all WDL files for version statements. Identify draft-2 syntax usage.
@@ -91,7 +91,7 @@ AWS HealthOmics requires:
    - Update struct definitions if using WDL 1.1.
    - Replace `command { ... }` with `command <<< ... >>>` for WDL 1.1+.
 3. Validate imports:
-   - Verify all imported WDL files are the same version as the main workflow.
+   - Ensure all imported WDL files are the same version as the main workflow.
    - Update import statements to use proper aliasing.
    - Check for circular dependencies.
 4. Lint:
@@ -128,20 +128,14 @@ AWS HealthOmics requires:
    └── inputs/
        └── samples/
    ```
-3. IF creating new S3 buckets, configure them with:
-   - Block Public Access MUST be enabled on all S3 buckets.
-   - Default encryption (SSE-S3 minimum; SSE-KMS recommended for sensitive genomics data).
-   - Bucket policy enforcing TLS (`aws:SecureTransport` condition).
-   - Versioning enabled for reference data protection.
-   - Access logging enabled for audit compliance.
-4. Create `scripts/migrate_references_to_s3.sh` to:
+3. Create `scripts/migrate_references_to_s3.sh` to:
    - Copy from existing S3 locations if available.
    - Upload local files if needed.
    - Obtain and upload `http(s)://` and `ftp://` resources to S3.
    - Set appropriate S3 storage class (Intelligent-Tiering).
    - Validate checksums after upload.
-5. Create `healthomics.inputs.json` with S3 URIs for all File inputs.
-6. Update any hardcoded paths in command sections to use input variables.
+4. Create `healthomics.inputs.json` with S3 URIs for all File inputs.
+5. Update any hardcoded paths in command sections to use input variables.
 
 **Done WHEN**:
 - Reference inventory CSV lists all files and sizes.
@@ -151,7 +145,7 @@ AWS HealthOmics requires:
 
 ### Phase 5: Output Collection Strategy
 
-**Objective**: Verify all workflow outputs are properly declared.
+**Objective**: Ensure all workflow outputs are properly declared.
 
 **Key Rule**: Intermediate files are automatically cleaned up unless declared as workflow outputs.
 
@@ -248,7 +242,7 @@ workflow MyWorkflow {
 
 ## WDL-Specific Considerations
 
-- **Scatter-Gather**: Verify scattered tasks have appropriate resources. Verify `Array[File]` outputs are properly collected.
+- **Scatter-Gather**: Ensure scattered tasks have appropriate resources. Verify `Array[File]` outputs are properly collected.
 - **Sub-Workflows**: Ensure all imported WDL files are migrated. Verify sub-workflow outputs are properly passed.
 - **Optional Inputs**: Handle `File?` inputs gracefully. Use `select_first()` or `defined()` appropriately.
 - **Command Section**: Use `~{}` for variable interpolation (WDL 1.0+). Avoid hardcoded paths. Use `sep()` for array joining.

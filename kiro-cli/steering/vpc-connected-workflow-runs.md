@@ -8,7 +8,7 @@ description: Running HealthOmics workflows with VPC connectivity and internet ac
 
 ## Purpose
 
-This SOP defines how you, the agent, help users run HealthOmics workflows with Amazon Virtual Private Cloud (Amazon VPC) networking enabled. Amazon VPC Connected Workflow Runs allow workflows to access resources in the customer's VPC, the public internet, AWS services in other Regions, and on-premises resources.
+This SOP defines how you, the agent, help users run HealthOmics workflows with VPC networking enabled. VPC Connected Workflow Runs allow workflows to access resources in the customer's VPC, the public internet, AWS services in other Regions, and on-premises resources.
 
 ## Trigger Conditions
 
@@ -105,7 +105,7 @@ DO NOT follow this SOP WHEN:
 
 ## Call Caching Considerations
 
-When using VPC networking with call caching, verify your workflow engine is configured appropriately:
+When using VPC networking with call caching, ensure your workflow engine is configured appropriately:
 - Consult the HealthOmics documentation on engine-specific caching features.
 - When connecting to non-deterministic or dynamic resources (e.g., third-party databases on the public internet), use the cache task opt-out feature in your workflows to avoid caching dynamic datasets that could impact run outputs.
 

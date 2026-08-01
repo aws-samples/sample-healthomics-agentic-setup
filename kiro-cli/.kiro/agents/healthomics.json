@@ -19,23 +19,27 @@
     "@aws-healthomics"
   ],
   "resources": [
+    "skill://steering/git-integration.md",
     "skill://steering/workflow-development.md",
     "skill://steering/running-a-workflow.md",
     "skill://steering/batch-runs.md",
-    "skill://steering/workflow-versioning.md",
     "skill://steering/migration-guide-for-wdl.md",
     "skill://steering/migration-guide-for-nextflow.md",
+    "skill://steering/workflow-versioning.md",
     "skill://steering/troubleshooting.md",
     "skill://steering/ecr-pull-through-cache.md",
-    "skill://steering/git-integration.md",
+    "skill://steering/image-staging.md",
     "skill://steering/vpc-setup.md",
+    "skill://steering/healthomics-configuration.md",
     "skill://steering/vpc-connected-workflow-runs.md",
-    "skill://steering/healthomics-configuration.md"
+    "skill://steering/regional-capabilities.md"
   ],
   "mcpServers": {
     "aws-healthomics": {
       "command": "uvx",
-      "args": ["awslabs.aws-healthomics-mcp-server@latest"],
+      "args": [
+        "awslabs.aws-healthomics-mcp-server@latest"
+      ],
       "env": {
         "HEALTHOMICS_DEFAULT_MAX_RESULTS": "100",
         "AGENT": "kiro-cli"

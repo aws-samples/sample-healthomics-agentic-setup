@@ -41,6 +41,62 @@ Follow this SOP WHEN:
 2. Call `GetAHORun` to check status.
 3. WHEN the workflow completes, outputs will be at the specified output location.
 
+### Engine Settings
+
+`StartRun` accepts an `engineSettings` map that customizes how HealthOmics invokes the workflow engine. The map is engine-agnostic in concept; today only Nextflow keys are implemented, so pass it only for Nextflow workflows. Pass it only when the user requests the corresponding behavior.
+
+> **Tooling support**: `engineSettings` is part of the HealthOmics REST API, but it is NOT yet exposed by every released AWS CLI/SDK version — older clients reject it with `Unknown parameter: "engineSettings"`. Prefer the HealthOmics MCP server (which sends the field directly) to start runs that use `engineSettings`. If you must use the AWS CLI, first confirm the installed version accepts it (`aws omics start-run help` lists `--engine-settings`); if it does not, upgrade the CLI/SDK. Do not assume the `--engine-settings` flag exists on the user's installed CLI.
+
+Currently supported keys (Nextflow):
+
+| Key | Purpose | Notes |
+| --- | --- | --- |
+| `profile` | Selects one or more profiles defined in the workflow's `nextflow.config`. | Comma-separated for multiple (e.g. `"test,docker"`). Order matters: v26.04+ applies in command-line order; earlier versions apply in definition order. A nonexistent profile = validation error. Profiles MUST be inside the workflow zip. |
+| `syntaxVersion` | Selects the Nextflow parser syntax. | v26.04 defaults to strict (v2) syntax. Set to `"v1"` to run a workflow authored against the legacy parser. Not supported on v25.10 and earlier. |
+| `outputFormat` | Format for the workflow output summary printed on completion. | v26.04+ only. |
+| `agentMode` | Enables Nextflow agent logging mode. | v26.04+ only. |
+
+Behavior to know (Nextflow profiles):
+- IF the workflow defines a `standard` profile and the user does not specify one, HealthOmics applies `standard` automatically.
+- Explicit run parameters (in `parameters.json`) override profile-defined parameter values.
+- Recommend pinning `manifest.nextflowVersion` in the workflow when profiles are in use, so profile application is consistent across runs.
+
+### Requester Pays
+
+If a workflow reads from or writes to S3 Requester Pays buckets, the run must opt in. There are two ways to enable it:
+
+**Option 1 — Per-run flag:**
+```bash
+aws omics start-run \
+    --workflow-id <workflow-id> \
+    --role-arn arn:aws:iam::<account>:role/<role> \
+    --output-uri s3://<requester-pays-bucket>/outputs/ \
+    --parameters '{"input_file": "s3://<requester-pays-bucket>/data/file.txt"}' \
+    --requester-pays-enabled
+```
+
+Use `--no-requester-pays-enabled` to explicitly disable (the default).
+
+**Option 2 — Configuration-level (reusable across runs):**
+```bash
+aws omics create-configuration \
+    --name requester-pays-config \
+    --description "Enables S3 Requester Pays access for runs" \
+    --run-configurations '{"requesterPaysEnabled": true}'
+```
+
+Then reference it when starting the run:
+```bash
+aws omics start-run \
+    --workflow-id <workflow-id> \
+    --role-arn arn:aws:iam::<account>:role/<role> \
+    --output-uri s3://<requester-pays-bucket>/outputs/ \
+    --configuration-name requester-pays-config \
+    --parameters '{"input_file": "s3://<requester-pays-bucket>/data/file.txt"}'
+```
+
+Without requester-pays enabled, runs that access Requester Pays buckets will fail with an S3 access error.
+
 ### Handling Failures
 
 IF the workflow run fails:

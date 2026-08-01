@@ -4,7 +4,7 @@
 
 ## Purpose
 
-This SOP defines how you, the agent, configure Amazon Elastic Container Registry (Amazon ECR) Pull-Through Caches and Container Registry Maps so that HealthOmics workflows can access containers from public registries. HealthOmics requires containers from PRIVATE Amazon ECR repositories with correct permissions.
+This SOP defines how you, the agent, configure ECR Pull-Through Caches and Container Registry Maps so that HealthOmics workflows can access containers from public registries. HealthOmics requires containers from PRIVATE ECR repositories with correct permissions.
 
 ## Key Concepts
 
@@ -191,7 +191,7 @@ ENSURE the HealthOmics service role has ECR permissions:
 }
 ```
 
-Adjust repository ARN patterns to match your pull-through cache prefixes. Wildcard patterns (`/*`) are required here because pull-through caches create repositories dynamically as containers are pulled for the first time. This is a justified exception to the least-privilege principle of avoiding wildcards in Resource fields. Compensating controls: scope the prefixes to only the upstream registries you use, enable CloudTrail logging to monitor ECR API calls, and periodically review repositories under each prefix to remove unused ones.
+Adjust repository ARN patterns to match your pull-through cache prefixes.
 
 ## Regions
 
