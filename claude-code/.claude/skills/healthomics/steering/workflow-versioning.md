@@ -4,7 +4,7 @@
 
 ## Purpose
 
-This SOP defines how you, the agent, handle modifications to existing HealthOmics workflows. You MUST use `CreateAHOWorkflowVersion` to create a new version rather than creating an entirely new workflow. This preserves workflow history, maintains consistent workflow IDs, and follows HealthOmics recommended practices.
+This SOP defines how you, the agent, handle modifications to existing HealthOmics workflows. You MUST use `CreateAHOWorkflowVersion` to create a new version rather than creating an entirely new workflow. This preserves workflow history, maintains consistent workflow IDs, and follows HealthOmics best practices.
 
 ## Trigger Conditions
 

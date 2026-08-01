@@ -15,9 +15,11 @@ When performing tasks related to the following scenarios, load the appropriate s
 - Modifying, updating, or fixing an existing HealthOmics workflow → load `steering/workflow-versioning.md`
 - Diagnosing workflow creation issues or run failures → load `steering/troubleshooting.md`
 - Using public containers with HealthOmics via ECR Pull-Through Caches → load `steering/ecr-pull-through-cache.md`
+- Using containers from registries not supported by ECR Pull-Through Cache (Seqera Wave, NVIDIA NGC, Google Artifact Registry) via image staging → load `steering/image-staging.md`
 - Setting up VPC infrastructure for HealthOmics workflows → load `steering/vpc-setup.md`
 - Managing HealthOmics VPC configurations (creating, listing, getting, or deleting) → load `steering/healthomics-configuration.md`
 - Running workflows with VPC connectivity, public internet access, or cross-region access → load `steering/vpc-connected-workflow-runs.md`
+- Understanding regional feature availability, GPU instance limitations, or troubleshooting region-specific errors → load `steering/regional-capabilities.md`
 
 ## Onboarding
 

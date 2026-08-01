@@ -4,7 +4,7 @@
 
 ## Purpose
 
-This SOP defines how you, the agent, create and manage HealthOmics Configuration resources. A Configuration stores reusable Amazon Virtual Private Cloud (Amazon VPC) networking settings (subnets and security groups) that can be shared across multiple workflow runs.
+This SOP defines how you, the agent, create and manage HealthOmics Configuration resources. A Configuration stores reusable VPC networking settings (subnets and security groups) that can be shared across multiple workflow runs.
 
 ## Trigger Conditions
 
@@ -129,7 +129,7 @@ The user must have `iam:CreateServiceLinkedRole` permission for this to succeed.
 {
   "Effect": "Allow",
   "Action": "iam:CreateServiceLinkedRole",
-  "Resource": "arn:aws:iam::<ACCOUNT_ID>:role/aws-service-role/omics.amazonaws.com/AWSServiceRoleForHealthOmics",
+  "Resource": "arn:aws:iam::*:role/aws-service-role/omics.amazonaws.com/AWSServiceRoleForHealthOmics",
   "Condition": {
     "StringEquals": {
       "iam:AWSServiceName": "omics.amazonaws.com"
@@ -137,8 +137,6 @@ The user must have `iam:CreateServiceLinkedRole` permission for this to succeed.
   }
 }
 ```
-
-Replace `<ACCOUNT_ID>` with the user's AWS account ID to follow least-privilege principles.
 
 **Note on Service-Linked Role Deletion:** The service-linked role can only be deleted after ALL configurations in the account have been deleted. IF the user wants to delete the role:
 1. First delete all configurations using `DeleteAHOConfiguration`.

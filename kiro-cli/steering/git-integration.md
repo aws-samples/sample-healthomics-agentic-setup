@@ -173,7 +173,7 @@ CreateAHOWorkflow(
 
 ### Repository Access Denied
 - Verify the connection has appropriate repository permissions.
-- For private repositories, verify OAuth scope includes repo access.
+- For private repositories, ensure OAuth scope includes repo access.
 - Check that `fullRepositoryId` is correct.
 
 ### Workflow Definition Not Found
@@ -196,7 +196,7 @@ Users need these permissions for Git integration:
                 "codeconnections:ListConnections",
                 "codeconnections:UseConnection"
             ],
-            "Resource": "arn:aws:codeconnections:*:*:connection/*"
+            "Resource": "*"
         }
     ]
 }

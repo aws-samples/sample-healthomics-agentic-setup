@@ -20,9 +20,11 @@ Load the appropriate reference file based on the task:
 - **Version/update workflow** → `references/workflow-versioning.md`
 - **Troubleshoot failures** → `references/troubleshooting.md`
 - **ECR containers** → `references/ecr-pull-through-cache.md`
+- **Stage container images** → `references/image-staging.md`
 - **VPC setup** → `references/vpc-setup.md`
 - **VPC configuration** → `references/healthomics-configuration.md`
 - **VPC connected runs** → `references/vpc-connected-workflow-runs.md`
+- **Regional capabilities** → `references/regional-capabilities.md`
 
 ## Onboarding
 

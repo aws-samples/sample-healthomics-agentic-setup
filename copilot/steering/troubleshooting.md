@@ -28,9 +28,9 @@ IF a workflow fails to reach `CREATED` status, check these causes in order:
     4. IF the previous run used a Run Cache you MUST reference that when starting the new run. Otherwise, you MAY create a Run Cache for this run.
     5. Start a new run of the workflow/ workflow version using identical or modified inputs and Run Cache as appropriate.
 
-## Amazon VPC Connected Workflow Run Failures
+## VPC Connected Workflow Run Failures
 
-IF a workflow run using Amazon VPC networking fails with connectivity-related errors:
+IF a workflow run using VPC networking fails with connectivity-related errors:
 
 - **Run fails to access public internet:**
     1. Verify the configuration is using private subnets (not public subnets).

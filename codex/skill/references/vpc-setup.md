@@ -8,7 +8,7 @@ description: Setting up VPC infrastructure for HealthOmics workflow runs
 
 ## Purpose
 
-This SOP defines how you, the agent, help users set up an Amazon Virtual Private Cloud (Amazon VPC) for use with HealthOmics Amazon VPC Connected Workflow Runs. This covers VPC infrastructure requirements including subnets, NAT Gateways, security groups, route tables, and VPC endpoints.
+This SOP defines how you, the agent, help users set up a VPC for use with HealthOmics VPC Connected Workflow Runs. This covers VPC infrastructure requirements including subnets, NAT Gateways, security groups, route tables, and VPC endpoints.
 
 ## Trigger Conditions
 
@@ -34,7 +34,7 @@ DO NOT follow this SOP WHEN:
 
 ## Supported Regions and Availability Zones
 
-HealthOmics Workflows operates in the following Regions and Availability Zones. When creating VPC subnets, verify they are in one or more of these Availability Zones.
+HealthOmics Workflows operates in the following Regions and Availability Zones. When creating VPC subnets, ensure they are in one or more of these Availability Zones.
 
 | Region | Availability Zone Name | Availability Zone ID |
 |---|---|---|
@@ -63,6 +63,12 @@ HealthOmics Workflows operates in the following Regions and Availability Zones. 
 | ap-northeast-2 | ap-northeast-2a | apne2-az1 |
 | ap-northeast-2 | ap-northeast-2b | apne2-az2 |
 | ap-northeast-2 | ap-northeast-2c | apne2-az3 |
+| us-east-2 | us-east-2a | use2-az1 |
+| us-east-2 | us-east-2b | use2-az2 |
+| us-east-2 | us-east-2c | use2-az3 |
+| ap-northeast-1 | ap-northeast-1a | apne1-az4 |
+| ap-northeast-1 | ap-northeast-1c | apne1-az1 |
+| ap-northeast-1 | ap-northeast-1d | apne1-az2 |
 
 ## Procedure
 
@@ -115,7 +121,7 @@ Once the VPC infrastructure is ready, create a HealthOmics Configuration resourc
 1. Start a test workflow run with VPC networking to validate connectivity. See the [VPC Connected Workflow Runs SOP](./vpc-connected-workflow-runs.md).
 2. IF connectivity issues occur, see the [Troubleshooting SOP](./troubleshooting.md) for VPC-specific troubleshooting including VPC Flow Logs analysis.
 
-## Recommended Practices
+## Best Practices
 
 ### Security
 - Use least-privilege security groups. Allow only the minimum required outbound traffic. Use specific destination CIDR blocks instead of `0.0.0.0/0` when possible. Document the purpose of each security group rule.
@@ -126,7 +132,7 @@ Once the VPC infrastructure is ready, create a HealthOmics Configuration resourc
 ### Performance
 - Network throughput starts at 10 Gbps per ENI and scales to 100 Gbps over a 60-minute period with sustained traffic. For workflows with immediate high-throughput requirements, plan ahead and contact AWS Support for pre-warming.
 - Deploy one NAT Gateway per Availability Zone for production workloads to improve resiliency and throughput, and reduce cross-AZ data transfer costs.
-- Reuse configurations across multiple workflows to reduce management overhead and maintain consistent network settings.
+- Reuse configurations across multiple workflows to reduce management overhead and ensure consistent network settings.
 - Test configurations with test workflows before production use. Validate network connectivity and verify security group rules allow required traffic.
 
 ### Cost Optimization
