@@ -22,14 +22,14 @@ This example showcases intelligent genomics data search: discovering files acros
 
 ## Test Data
 
-The publicly readable `aws-genomics-static-<region>` bucket (e.g., `aws-genomics-static-us-east-1`) contains FASTQ, BAM, CRAM, VCF, and reference FASTA files.
+The publicly readable `aws-genomics-static-226637376468-<region>-an` bucket (e.g., `aws-genomics-static-226637376468-us-east-1-an`) contains FASTQ, BAM, CRAM, VCF, and reference FASTA files.
 
 ## Prompts
 
 ### Prompt 1: Search for Genomics Files
 
 ```
-Search for sequence reads in s3://aws-genomics-static-us-east-1/omics-data/
+Search for sequence reads in s3://aws-genomics-static-226637376468-us-east-1-an/omics-data/
 ```
 
 **Expected behavior:** Searches for FASTQ files and returns results with file paths, sizes, associated files (paired reads, index files), and file type distribution.
@@ -52,7 +52,7 @@ associated index files are included in the results?
 ### Prompt 3: Find BAM Files with Their Indexes
 
 ```
-Search for BAM files in the aws-genomics-static-us-east-1/omics-data bucket. I need to find
+Search for BAM files in the aws-genomics-static-226637376468-us-east-1-an/omics-data bucket. I need to find
 aligned reads that have associated index files so I can use them as inputs to
 a variant calling workflow.
 ```
@@ -64,7 +64,7 @@ a variant calling workflow.
 ### Prompt 4: Search for VCF Files
 
 ```
-Find all variant call files in the aws-genomics-static-us-east-1/omics-data/ bucket. I want to see which
+Find all variant call files in the aws-genomics-static-226637376468-us-east-1-an/omics-data/ bucket. I want to see which
 ones have index files so I can use them for joint genotyping.
 ```
 
@@ -75,7 +75,7 @@ ones have index files so I can use them for joint genotyping.
 ### Prompt 5: Find Paired-End FASTQs for a Sample
 
 ```
-Search for FASTQ files matching "NA12878" in the aws-genomics-static-us-east-1/omics-data/ bucket.
+Search for FASTQ files matching "NA12878" in the aws-genomics-static-226637376468-us-east-1-an/omics-data/ bucket.
 I need to find paired-end read files (R1 and R2) that I can use as inputs to a
 read alignment workflow.
 ```
@@ -87,7 +87,7 @@ read alignment workflow.
 ### Prompt 6: Search for Reference Genomes
 
 ```
-Find human reference genome files in the aws-genomics-static-us-east-1/omics-data/ bucket. I need
+Find human reference genome files in the aws-genomics-static-226637376468-us-east-1-an/omics-data/ bucket. I need
 a reference with its index files and dictionary for running GATK workflows.
 ```
 
@@ -98,7 +98,7 @@ a reference with its index files and dictionary for running GATK workflows.
 ### Prompt 7: Search Across Multiple Buckets
 
 ```
-Search for CRAM files across both the aws-genomics-static-us-east-1/omics-data/ bucket and my
+Search for CRAM files across both the aws-genomics-static-226637376468-us-east-1-an/omics-data/ bucket and my
 project bucket s3://my-genomics-project/samples/. Show me what's available with their index files.
 ```
 
@@ -116,7 +116,7 @@ I have a WDL workflow that takes these inputs:
   - ref_fasta_index: File (FAI index)
   - ref_dict: File (sequence dictionary)
 
-Search the aws-genomics-static-us-east-1 bucket for BAM and FASTA files and help me
+Search the aws-genomics-static-226637376468-us-east-1-an bucket for BAM and FASTA files and help me
 assemble the correct input parameters for a workflow run.
 ```
 
@@ -127,7 +127,7 @@ assemble the correct input parameters for a workflow run.
 ### Prompt 9: Search with Pagination
 
 ```
-Search for all genomics files in the aws-genomics-static-us-east-1/omics-data/ bucket without
+Search for all genomics files in the aws-genomics-static-226637376468-us-east-1-an/omics-data/ bucket without
 filtering by type. Show me the file type distribution and total count.
 ```
 
@@ -150,7 +150,7 @@ subject "NA12878". I want to find what's already been imported.
 
 ```
 I want to run a FASTQ-to-BAM alignment workflow. Help me:
-1. Find paired-end FASTQ files in aws-genomics-static-us-east-1/omics-data/
+1. Find paired-end FASTQ files in aws-genomics-static-226637376468-us-east-1-an/omics-data/
 2. Find a reference genome with BWA indexes
 3. Show me how these map to typical alignment workflow inputs
 ```

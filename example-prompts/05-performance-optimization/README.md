@@ -22,7 +22,7 @@ This example showcases the performance analysis loop: run → analyze → optimi
 
 ## Test Data
 
-If you need a completed run, use test data from the publicly readable `aws-genomics-static-<region>` bucket. Run a workflow from Example 1 or Example 2 with small inputs to produce a completed run you can analyze.
+If you need a completed run, use test data from the publicly readable `aws-genomics-static-226637376468-<region>-an` bucket. Run a workflow from Example 1 or Example 2 with small inputs to produce a completed run you can analyze.
 
 ## Prompts
 

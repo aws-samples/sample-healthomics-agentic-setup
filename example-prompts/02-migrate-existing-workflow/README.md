@@ -145,7 +145,7 @@ Lint the migrated workflow, fix any remaining issues, then package and deploy it
 ### Prompt 5: Create Test Inputs
 
 ```
-Create a parameters.json for this workflow. Search the aws-genomics-static-us-east-1/omics-data/
+Create a parameters.json for this workflow. Search the aws-genomics-static-226637376468-us-east-1-an/omics-data/
 bucket for a suitable reference genome and BAM file I can use for testing.
 ```
 
