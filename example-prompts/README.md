@@ -26,7 +26,7 @@ This creates a `.healthomics/config.toml` that all subsequent prompts will use.
 
 ### Test Data
 
-The `aws-genomics-static-<region>` S3 bucket (e.g., `aws-genomics-static-us-east-1`) is publicly readable and contains genomics test data (FASTQ, BAM, CRAM, VCF, references). It is replicated in all HealthOmics regions. Many examples reference this bucket for inputs.
+The `aws-genomics-static-226637376468-<region>-an` S3 bucket (e.g., `aws-genomics-static-226637376468-us-east-1-an`) is publicly readable and contains genomics test data (FASTQ, BAM, CRAM, VCF, references). It is replicated in all HealthOmics regions. Many examples reference this bucket for inputs.
 
 ---
 

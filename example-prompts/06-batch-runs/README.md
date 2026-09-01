@@ -26,7 +26,7 @@ This example showcases batch run capabilities: preparation, submission, monitori
 
 ```
 I have a variant calling workflow (workflow ID: <WORKFLOW_ID>) and I want to run it
-across multiple samples. Search the aws-genomics-static-us-east-1 bucket for FASTQ
+across multiple samples. Search the aws-genomics-static-226637376468-us-east-1-an bucket for FASTQ
 pairs I can use, then submit a batch run with up to 5 samples.
 ```
 

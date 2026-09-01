@@ -103,10 +103,10 @@ its parameters and resource requirements.
 
 ```
 Run the variant-calling-pipeline with the public test data from the
-aws-genomics-static-us-east-1 bucket:
+aws-genomics-static-226637376468-us-east-1-an bucket:
 - samples: ["SRR2089363", "SRR2089364"]
-- fastq_files from s3://aws-genomics-static-us-east-1/omics-data/tumor-normal/fastqs/
-- Reference genome and BWA index from s3://aws-genomics-static-us-east-1/omics-data/test-datasets/nf-core-sarek/reference/chr20_hg38/
+- fastq_files from s3://aws-genomics-static-226637376468-us-east-1-an/omics-data/tumor-normal/fastqs/
+- Reference genome and BWA index from s3://aws-genomics-static-226637376468-us-east-1-an/omics-data/test-datasets/nf-core-sarek/reference/chr20_hg38/
 - Use pre-built BWA index files (run_bwa_index: false)
 - Use DYNAMIC storage
 ```

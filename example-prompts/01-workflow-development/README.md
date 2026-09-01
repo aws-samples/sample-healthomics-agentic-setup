@@ -22,7 +22,7 @@ This example showcases the full development lifecycle: writing WDL, linting, pac
 
 ## Test Data
 
-This example uses the publicly readable `aws-genomics-static-<region>` bucket (e.g., `aws-genomics-static-us-east-1`) which contains FASTQ, BAM, and reference data suitable for testing.
+This example uses the publicly readable `aws-genomics-static-226637376468-<region>-an` bucket (e.g., `aws-genomics-static-226637376468-us-east-1-an`) which contains FASTQ, BAM, and reference data suitable for testing.
 
 ## Prompts
 
@@ -86,7 +86,7 @@ Package and deploy this workflow to HealthOmics.
 ### Prompt 6: Find Test Data and Run
 
 ```
-Search for suitable input files in the aws-genomics-static-us-east-1/omics-data/ bucket that I can use
+Search for suitable input files in the aws-genomics-static-226637376468-us-east-1-an/omics-data/ bucket that I can use
 to test this workflow, then start a run.
 ```
 
